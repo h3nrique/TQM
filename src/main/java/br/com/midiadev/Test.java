@@ -40,7 +40,7 @@ public class Test {
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
             FirefoxProfile profile = new FirefoxProfile();
-            String file = String.format("/home/h3nrique/Desktop/%s-%s.pdf", simpleDateFormat.format(calendar.getTime()), companhia);
+            String file = String.format("/tmp/tqm-pageshot-%s-%s.pdf", simpleDateFormat.format(calendar.getTime()), companhia);
             profile.setPreference("print.always_print_silent", true);
             profile.setPreference("print.print_to_filename", file);
             profile.setPreference("print.print_paper_width", "415.0");
