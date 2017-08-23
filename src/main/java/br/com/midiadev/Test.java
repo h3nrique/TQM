@@ -5,6 +5,7 @@ import br.com.midiadev.model.Requests;
 import br.com.midiadev.model.TQM;
 import br.com.midiadev.model.WaitField;
 import com.thoughtworks.xstream.XStream;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,6 +21,7 @@ import java.util.Calendar;
 /**
  * Created by h3nrique on 8/12/15.
  */
+@Slf4j
 public class Test {
 
     public static void main(String[] args) throws Exception {
@@ -51,31 +53,31 @@ public class Test {
             firefoxOptions.setBinary(ffBinary);
             firefoxOptions.setProfile(ffProfile);
 
-            WebDriver driver = new FirefoxDriver(firefoxOptions);
-            driver.manage().window().maximize();
+            WebDriver webDriver = new FirefoxDriver(firefoxOptions);
+            webDriver.manage().window().maximize();
 
-            driver.get(url);
+            webDriver.get(url);
 
-            waitForPageLoad(driver, request.getTimeoutLoadPageInSeconds());
+            waitForPageLoad(webDriver, request.getTimeoutLoadPageInSeconds());
 
             switch (requestWaitField.getType()) {
                 case ID:
-                    waitForPageContent(driver, By.id(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
+                    waitForPageContent(webDriver, By.id(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
                     break;
                 case NAME:
-                    waitForPageContent(driver, By.name(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
+                    waitForPageContent(webDriver, By.name(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
                     break;
                 case CLASS:
-                    waitForPageContent(driver, By.className(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
+                    waitForPageContent(webDriver, By.className(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
                     break;
 
             }
 
             Thread.sleep(1000);
-            ((JavascriptExecutor) driver).executeScript("window.print();");
+            ((JavascriptExecutor) webDriver).executeScript("window.print();");
 
             Thread.sleep(10000);
-            driver.quit();
+            webDriver.quit();
             Thread.sleep(1000);
         }
     }
@@ -112,7 +114,12 @@ public class Test {
                     }
                 }
             };
-        WebDriverWait wait = new WebDriverWait(webDriver, timeOutInSeconds);
-        wait.until(pageLoadCondition);
+        try {
+            WebDriverWait wait = new WebDriverWait(webDriver, timeOutInSeconds);
+            wait.until(pageLoadCondition);
+        } catch (TimeoutException err) {
+            log.error("Timeout waiting component on page");
+            ((JavascriptExecutor) webDriver).executeScript("window.print();");
+        }
     }
 }
