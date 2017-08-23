@@ -84,10 +84,10 @@ public class Test {
 
     private static void checkDirs(TQM tqm) {
         if(!new File(tqm.getLogDir()).exists()){
-            new File(tqm.getLogDir()).mkdir();
+            new File(tqm.getLogDir()).mkdirs();
         }
         if(!new File(tqm.getPrintDir()).exists()){
-            new File(tqm.getPrintDir()).mkdir();
+            new File(tqm.getPrintDir()).mkdirs();
         }
     }
 
@@ -98,8 +98,7 @@ public class Test {
                         return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
                     }
                 };
-        WebDriverWait wait = new WebDriverWait(webDriver, timeOutInSeconds);
-        wait.until(pageLoadCondition);
+        wait(webDriver, pageLoadCondition, timeOutInSeconds);
     }
 
     public static void waitForPageContent(final WebDriver webDriver, final By byField, final Integer timeOutInSeconds) {
@@ -114,12 +113,15 @@ public class Test {
                     }
                 }
             };
+        wait(webDriver, pageLoadCondition, timeOutInSeconds);
+    }
+
+    private static void wait(WebDriver webDriver, ExpectedCondition<Boolean> pageLoadCondition, Integer timeOutInSeconds) {
         try {
             WebDriverWait wait = new WebDriverWait(webDriver, timeOutInSeconds);
             wait.until(pageLoadCondition);
         } catch (TimeoutException err) {
-            log.error("Timeout waiting component on page");
-            ((JavascriptExecutor) webDriver).executeScript("window.print();");
+            log.warn("Timeout waiting component on page");
         }
     }
 }
