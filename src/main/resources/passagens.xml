@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tqm>
+    <firefoxBin>/home/h3nrique/Downloads/firefox/firefox</firefoxBin> <!-- https://ftp.mozilla.org/pub/firefox/releases/ :: 48 ou 51 -->
+    <webdriverGeckoDriver>/home/h3nrique/Downloads/geckodriver</webdriverGeckoDriver> <!-- https://github.com/mozilla/geckodriver/releases/ :: v0.15.0 -->
+    <logDir>/tmp/tqm/log/</logDir>
+    <printDir>/tmp/tqm/print/</printDir>
+    <requests>
+        <request>
+            <url>http://www.passagenspromo.com.br/site/aereo/pesquisa/Sao%20Paulo%20-%20SP,%20Brasil,%20Todos%20os%20aeroportos%20(SAO)/Fortaleza%20-%20CE,%20Brasil,%20Pinto%20Martins%20(FOR)/04-09-2018/07-09-2018/1/0/0</url>
+            <name>passagenspromo_SAO-FOR_04-09-2018_07-09-2018</name>
+            <timeoutLoadPageInSeconds>20</timeoutLoadPageInSeconds>
+            <waitField>
+                <name>selecao</name>
+                <type>CLASS</type>
+            </waitField>
+        </request>
+        <request>
+            <url>http://passagens-aereas2.viajanet.com.br/s/voos-resultados#/SAO/FOR/RT/04-09-2018/07-09-2018/-/-/-/1/0/0/-/-</url>
+            <name>viajanet_SAO-FOR_04-09-2018_07-09-2018</name>
+            <timeoutLoadPageInSeconds>20</timeoutLoadPageInSeconds>
+            <waitField>
+                <name>price</name>
+                <type>CLASS</type>
+            </waitField>
+        </request>
+        <request>
+            <url>http://www.decolar.com/shop/flights/results/roundtrip/SAO/FOR/2018-09-04/2018-09-07/1/0/0</url>
+            <name>decolar_SAO-FOR_04-09-2018_07-09-2018</name>
+            <timeoutLoadPageInSeconds>20</timeoutLoadPageInSeconds>
+            <waitField>
+                <name>fare-detail</name>
+                <type>CLASS</type>
+            </waitField>
+        </request>
+        <request>
+            <url>http://www.cvc.com.br/travel/resultado-passagens.aspx?searchtype=Air&amp;Origem=SAO&amp;Destino=FOR&amp;Origem=FOR&amp;Destino=SAO&amp;Proximity=&amp;ProximityId=0&amp;Data=04/09/2018&amp;RoundTrip=1&amp;Data=07/09/2018&amp;SomenteDireto=false&amp;ExecutiveFlight=false&amp;NumADT=1&amp;NumCHD=0&amp;NumINF=0&amp;Hora=&amp;Hora=&amp;Multi=false</url>
+            <name>cvc_SAO-FOR_04-09-2018_07-09-2018</name>
+            <timeoutLoadPageInSeconds>20</timeoutLoadPageInSeconds>
+            <waitField>
+                <name>total</name>
+                <type>CLASS</type>
+            </waitField>
+        </request>
+    </requests>
+</tqm>

@@ -7,10 +7,10 @@ import java.io.Serializable;
 /**
  * Created by h3nrique on 8/12/15.
  */
-@XStreamAlias("waitField")
 public class WaitField implements Serializable {
 
     private String name;
+    @XStreamAlias("type")
     private FieldType type;
 
     public String getName() {
@@ -33,7 +33,7 @@ public class WaitField implements Serializable {
     public String toString() {
         return "WaitField{" +
                 "name='" + name + '\'' +
-                ", type=" + type +
+//                ", type=" + type +
                 '}';
     }
 }
