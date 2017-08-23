@@ -60,13 +60,13 @@ public class Test {
 
             switch (requestWaitField.getType()) {
                 case ID:
-                    waitForPageContent(driver, By.id(requestWaitField.getName()));
+                    waitForPageContent(driver, By.id(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
                     break;
                 case NAME:
-                    waitForPageContent(driver, By.name(requestWaitField.getName()));
+                    waitForPageContent(driver, By.name(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
                     break;
                 case CLASS:
-                    waitForPageContent(driver, By.className(requestWaitField.getName()));
+                    waitForPageContent(driver, By.className(requestWaitField.getName()), request.getTimeoutLoadPageInSeconds());
                     break;
 
             }
@@ -89,7 +89,7 @@ public class Test {
         }
     }
 
-    public static void waitForPageLoad(final WebDriver webDriver, Integer timeOutInSeconds) {
+    public static void waitForPageLoad(final WebDriver webDriver, final Integer timeOutInSeconds) {
         ExpectedCondition<Boolean> pageLoadCondition = new
                 ExpectedCondition<Boolean>() {
                     public Boolean apply(WebDriver driver) {
@@ -100,7 +100,7 @@ public class Test {
         wait.until(pageLoadCondition);
     }
 
-    public static void waitForPageContent(final WebDriver webDriver, final By byField) {
+    public static void waitForPageContent(final WebDriver webDriver, final By byField, final Integer timeOutInSeconds) {
         ExpectedCondition<Boolean> pageLoadCondition = new
             ExpectedCondition<Boolean>() {
                 public Boolean apply(WebDriver driver) {
@@ -112,7 +112,7 @@ public class Test {
                     }
                 }
             };
-        WebDriverWait wait = new WebDriverWait(webDriver, 30);
+        WebDriverWait wait = new WebDriverWait(webDriver, timeOutInSeconds);
         wait.until(pageLoadCondition);
     }
 }
