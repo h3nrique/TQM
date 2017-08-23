@@ -1,11 +1,16 @@
 package br.com.midiadev;
 
+import br.com.midiadev.model.Request;
+import br.com.midiadev.model.TQM;
+import com.thoughtworks.xstream.XStream;
+import org.apache.xpath.objects.XString;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -15,6 +20,11 @@ import java.util.Calendar;
 public class Test {
 
     public static void main(String[] args) throws Exception {
+        XStream xstream = new XStream();
+        xstream.processAnnotations(TQM.class);
+        xstream.autodetectAnnotations(true);
+        Object tqm = xstream.fromXML(new File("/home/h3nrique/git/TQM/config/passagens.xml"), TQM.class);
+        System.out.println(tqm);
         String [] pesquisas = new String[] {
                 "passagenspromo",
                 "viajanet",
@@ -74,15 +84,14 @@ public class Test {
         wait.until(pageLoadCondition);
     }
 
-    public static void waitForPageContent(WebDriver webDriver, final By by) {
+    public static void waitForPageContent(final WebDriver webDriver, final By byField) {
         ExpectedCondition<Boolean> pageLoadCondition = new
             ExpectedCondition<Boolean>() {
                 public Boolean apply(WebDriver driver) {
                     try {
-                        WebElement webElement = driver.findElement(by);
+                        WebElement webElement = driver.findElement(byField);
                         return webElement != null && webElement.isDisplayed();
                     } catch (Exception err) {
-                        System.err.println(err.getMessage());
                         return false;
                     }
                 }

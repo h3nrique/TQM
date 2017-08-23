@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tqm>
+    <requests>
+        <request>
+            <url>http://www.passagenspromo.com.br/site/aereo/pesquisa/Sao%20Paulo%20-%20SP,%20Brasil,%20Todos%20os%20aeroportos%20(SAO)/Fortaleza%20-%20CE,%20Brasil,%20Pinto%20Martins%20(FOR)/04-09-2015/07-09-2015/1/0/0</url>
+            <name>passagenspromo_SAO-FOR_04-09-2015_07-09-2015</name>
+            <waitField>
+                <name>selecao</name>
+                <type>CLASS</type>
+            </waitField>
+        </request>
+        <request>
+            <url>http://passagens-aereas2.viajanet.com.br/s/voos-resultados#/SAO/FOR/RT/04-09-2015/07-09-2015/-/-/-/1/0/0/-/-</url>
+            <name>viajanet_SAO-FOR_04-09-2015_07-09-2015</name>
+            <waitField>
+                <name>price</name>
+                <type>CLASS</type>
+            </waitField>
+        </request>
+        <request>
+            <url>http://www.decolar.com/shop/flights/results/roundtrip/SAO/FOR/2015-09-04/2015-09-07/1/0/0</url>
+            <name>decolar_SAO-FOR_04-09-2015_07-09-2015</name>
+            <waitField>
+                <name>fare-detail</name>
+                <type>CLASS</type>
+            </waitField>
+        </request>
+        <request>
+            <url>http://www.cvc.com.br/travel/resultado-passagens.aspx?searchtype=Air&Origem=SAO&Destino=FOR&Origem=FOR&Destino=SAO&Proximity=&ProximityId=0&Data=04/09/2015&RoundTrip=1&Data=07/09/2015&SomenteDireto=false&ExecutiveFlight=false&NumADT=1&NumCHD=0&NumINF=0&Hora=&Hora=&Multi=false</url>
+            <name>cvc_SAO-FOR_04-09-2015_07-09-2015</name>
+            <waitField>
+                <name>total</name>
+                <type>CLASS</type>
+            </waitField>
+        </request>
+    </requests>
+</tqm>

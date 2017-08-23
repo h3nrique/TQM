@@ -51,6 +51,13 @@
 			<version>3.4</version>
 		</dependency>
 
+        <!-- XStream -->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.8</version>
+        </dependency>
+
 	</dependencies>
 	<build>
 		<finalName>tqm</finalName>
